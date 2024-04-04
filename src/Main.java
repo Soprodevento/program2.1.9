@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 public class Main {
     public static void main(String[] args) {
         ComplexNumber a = new ComplexNumber(1, 1);
@@ -44,8 +42,11 @@ public class Main {
             return re == num.re && im == num.im;
         }
         @Override
-        public int hashCode(){
-        return Objects.hash(re, im);
+        public int hashCode() {
+            long re1 = Double.doubleToLongBits(re);
+            long im1 = Double.doubleToLongBits(im);
+            return (int) ((re1 >> 16) ^ (im1 >> 32));
         }
+
     }
 }
